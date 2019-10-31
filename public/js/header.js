@@ -1,5 +1,19 @@
-document.addEventListener("DOMContentLoaded", event => {
-  var LoginManager = (function() {
+var Header = (function() {
+  async function handleModel(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    evt.stopImmediatePropagation();
+
+    var url = evt.target.getAttribute("href");
+
+    const response = await fetch(url);
+    const content = await response.text();
+
+    document.getElementById("modal").innerHTML = content;
+    document.getElementById("modal").style.display = "block";
+  }
+
+  function init() {
     var modelItems = document.querySelectorAll(
       "[rel*='js-register'],[rel*='js-login']"
     );
@@ -7,19 +21,10 @@ document.addEventListener("DOMContentLoaded", event => {
     modelItems.forEach(element => {
       element.addEventListener("click", handleModel);
     });
+  }
 
-    async function handleModel(evt) {
-      evt.preventDefault();
-      evt.stopPropagation();
-      evt.stopImmediatePropagation();
-
-      var url = evt.target.getAttribute("href");
-
-      const response = await fetch(url);
-      const content = await response.text();
-
-      document.getElementById("modal").innerHTML = content;
-      document.getElementById("modal").style.display = "block";
-    }
-  })();
+  return { init: init };
+})();
+document.addEventListener("DOMContentLoaded", event => {
+  Header.init();
 });
