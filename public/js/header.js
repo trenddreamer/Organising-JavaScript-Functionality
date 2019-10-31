@@ -25,6 +25,4 @@ var Header = (function() {
 
   return { init: init };
 })();
-document.addEventListener("DOMContentLoaded", event => {
-  Header.init();
-});
+document.addEventListener("DOMContentLoaded", Header.init);
