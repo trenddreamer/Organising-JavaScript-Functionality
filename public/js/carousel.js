@@ -23,6 +23,15 @@ var Carousel = (function() {
     $items.css({ left: -position + "px" });
   }
 
+  function moveCarousel(evt) {
+    if (position < maxPosition) {
+      position = Math.min(maxPosition, position + evt);
+    }
+
+    $items.css({ left: -position + "px" });
+
+  }
+
   function init() {
     $content = $("[rel=js-carousel] > [rel=js-content]");
     $items = $content.children("[rel=js-items]");
@@ -36,6 +45,7 @@ var Carousel = (function() {
     $left.on("click", scrollLeft);
     $right.on("click", scrollRight);
     $items.on("click", clickPerson);
+    Evt.on("person-selected-move", moveCarousel);
   }
   var $content,
     $items,

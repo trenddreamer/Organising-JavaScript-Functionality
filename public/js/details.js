@@ -13,6 +13,7 @@ var Details = (function() {
     evt.preventDefault();
     var ID = evt.target.getAttribute("data-item");
     Evt.emit("person-selected", ID);
+    Evt.emit("person-selected-move", 750);
   }
 
   function init() {
