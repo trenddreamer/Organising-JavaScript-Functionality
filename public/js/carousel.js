@@ -35,6 +35,7 @@ var Carousel = (function() {
     maxPosition = itemsWidth - contentWidth;
     $left.on("click", scrollLeft);
     $right.on("click", scrollRight);
+    $items.on("click", clickPerson);
   }
   var $content,
     $items,
@@ -45,7 +46,11 @@ var Carousel = (function() {
     position,
     maxPosition;
 
+  function clickPerson(evt) {
+    var ID = evt.target.getAttribute("href");
+
+    Evt.emit("person-selected", ID);
+  }
+  Evt.on("init", init);
   return { init: init };
 })();
-
-$(document).ready(Carousel.init);

@@ -22,7 +22,6 @@ var Header = (function() {
       element.addEventListener("click", handleModel);
     });
   }
-
+  Evt.on("init", init);
   return { init: init };
 })();
-document.addEventListener("DOMContentLoaded", Header.init);
